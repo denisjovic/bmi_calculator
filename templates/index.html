@@ -1,36 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.6.3/css/foundation.min.css" integrity="sha512-dMUQinc1gbNb95AFtKtP4q/g56T8r9oDxlWy0hrHyzfUbMq/vQztAqaR/FDY/bY0R1Ikc30aq94jyQH2Ix++ug==" crossorigin="anonymous" />    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BMI calculator</title>
-</head>
-<body>
-    <div class="flx">
-    <div class="callout success">
-        <h2>BMI index calculator</h2>
-    </div>
-    <form action="/" method="POST">
-        <div class='grid-container'>
-            <div class='grid-x grid padding-x'>
-                Enter your height in cm:<br>
-                <input type="text" name="height"/><br>
-                Enter your weight in kg:
-                <input type="text" name="weight"/><br><br>
-                <button class="success button" type="submit">Submit</button>
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1><b>BMI index calculator</b></h1>
+    <div class="container-full-bg">
+        <form action="/" method="POST">
+            <div class="form-group">
+                <label for="height">Height in cm</label>
+                <input type="text" name="height" class="form-control" placeholder="Enter height" required />
             </div>
-        </div>
-    </form>
-    {% if bmi %}
-    <div class="callout primary">
-        <h2>Your BMI is: {{ bmi }} which is considered {{ status }}</h2>
+            <div class="form-group">
+                <label for="mass">Weight in kg</label>
+                <input type="text" name="mass" class="form-control" placeholder="Enter weight" required />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 
-    {% endif %}
-    </div>
-</body>
-</html>
+    {% if bmi %}
+
+    <div id="alert" class="alert alert-primary animate__bounceIn" role="alert">
+        Your BMI is: {{ bmi }} which is considered {{ status }} </div>
+</div>
+
+{% endif %}
+</div>
+<div class="footer" id="footer">created with 
+    <img src="https://img.icons8.com/ios-filled/50/000000/coffee.png" alt="coffee"/> by 
+    <a href="https://www.linkedin.com/in/denisjovic/"> denisjovic</a>
+</div>
+</div>
+
+
+{% endblock %}

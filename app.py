@@ -10,8 +10,15 @@ def index():
     status = ''
     if request.method == 'POST':
         height = request.form.get('height')
-        mass = request.form.get('weight')
+        print(type(height))
+        print(height)
+        print("#######")
+        mass = request.form.get('mass')
+        print(type(mass))
+        print(mass)
+
         bmi = round(int(mass) / ((int(height) / 100) ** 2),1)
+        print(bmi)
         if 18.5 < bmi < 24.5:
             status = 'Healthy'
         elif bmi < 18.5:
@@ -23,4 +30,4 @@ def index():
     return render_template('index.html', bmi=bmi, status=status)
 
 
-app.run()
+app.run(debug=True)
