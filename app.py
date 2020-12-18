@@ -2,32 +2,28 @@ from flask import Flask, render_template, request, url_for, flash
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    height = ''
-    mass = ''
-    bmi = ''
-    status = ''
-    if request.method == 'POST':
-        height = request.form.get('height')
-        print(type(height))
-        print(height)
-        print("#######")
-        mass = request.form.get('mass')
-        print(type(mass))
-        print(mass)
 
-        bmi = round(int(mass) / ((int(height) / 100) ** 2),1)
+@app.route("/", methods=["GET", "POST"])
+def index():
+    height = ""
+    mass = ""
+    bmi = ""
+    status = ""
+    if request.method == "POST":
+        height = request.form.get("height")
+        mass = request.form.get("mass")
+
+        bmi = round(int(mass) / ((int(height) / 100) ** 2), 1)
         print(bmi)
         if 18.5 < bmi < 24.5:
-            status = 'Healthy'
+            status = "Healthy"
         elif bmi < 18.5:
-            status = 'Thin'
+            status = "Thin"
         elif 25 < bmi < 30:
-            status = 'Overweight'
+            status = "Overweight"
         else:
-            status = 'Obese'
-    return render_template('index.html', bmi=bmi, status=status)
+            status = "Obese"
+    return render_template("index.html", bmi=bmi, status=status)
 
 
 app.run(debug=True)
