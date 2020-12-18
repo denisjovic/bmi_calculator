@@ -1,0 +1,17 @@
+h2{
+    text-align: center !important;
+    font-weight: 300;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.flx {
+    display: flex;
+    justify-content: center;
+}
+
+p {
+    text-align: center;
+}
+button {
+    margin: 0 auto;
+}
